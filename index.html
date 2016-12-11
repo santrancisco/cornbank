@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Personal banking including accounts, credit cards and home loans - Cornmbank</title>
+    <meta name="description" content="Cornmbank offers personal banking, business solutions, institutional banking, company information, and more">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.css">
+    <link rel="stylesheet" href="css/phish.css">
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using living in the past. Please upgrade your browser to improve your experience.</p>
+        <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <div id="hello" class="inner cover">
+                    <div class="row">
+                        <h1 class="cover-heading">Phishing - The Art of Deception</h1>
+                        <br>
+                        <p id="result_text" class="lead">You have been tricked</a>!
+                            </br>
+                            </br>
+                            Unless you noticed the URL is actually
+                        </br>
+                            <a href="http://www.cornmbank.com">http://www.coRNmbank.com</a>
+                            </br>
+                            <br>
+                            Or in the case of me phishing you, I hope you noticed<br> the different URL when hovering your mouse over
+                            <br><br>
+                            <img src="img/phish.png">
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p class="lead">
+                            <a id="button" href="https://en.wikipedia.org/wiki/IDN_homograph_attack" class="btn btn-lg btn-default">More about IDN homograph attack</a>
+                            </br>
+                            </br>
+                            <a id="button" href="http://www.microsoft.com/security/online-privacy/phishing-symptoms.aspx" class="btn btn-lg btn-default">More about phishing</a>
+                        </p>
+                        <hr>
+                        <p>
+                            <h4>Your internet IP addresses:</h4>
+                            <ul id="internetip"></ul>
+                            <h4>Your local & internet IP addresses:</h4>
+                            <ul id="webrtc"></ul>
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h4>List of social network you log on right now:</h4>
+                        <div id="socialmedia"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="inner">
+                        <p> Fortunately, All of the information shown here are in your browser and not reported back to my server.<br>
+                            Contact San at his <a href="http://au.linkedin.com/in/santrancisco">Linkedin</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js"></script>
+
+    <!-- COnnect to local Stun server to find local ip -->
+    <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
+
+    <!-- Google Analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-71212403-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics -->
+    <!-- getIP WebRTC code-->
+    <script src="js/getip.js"></script>
+    <!-- Social media code -->
+    <script src="js/socialmedia.js"></script>
+
+    <script>
+    function OpenInNewTab(url) {
+      // This code will automatically open linkedin on the person browser
+      // and you could use a fake linkedin project and see who visited the site
+      // if they logged on linkedin at the time
+     // var win = window.open("https://au.linkedin.com/in/santrancisco", '');
+     // win.addEventListener('load', function() { win.close(); } , false);
+    }
+    OpenInNewTab();
+    </script>
+
+</body>
+
+</html>

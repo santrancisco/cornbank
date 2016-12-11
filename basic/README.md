@@ -1,0 +1,1 @@
+This folder has a .htaccess with .htpasswd configured - great for using this as example when application allows reference to external images. We can capture user's credential by throwing a 401 response to img tag ;)
