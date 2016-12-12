@@ -1,3 +1,4 @@
+console.log("getip.js loaded");
 //get the IP addresses associated with an account
 function getIPs(callback) {
     var ip_dups = {};
@@ -74,14 +75,15 @@ function getIPs(callback) {
 
 function getInternetIP(callback){
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://api.ipify.org?format=json", true);
+    xhttp.open("GET", "http://ip-api.com/json", true);
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            callback(JSON.parse(xhttp.responseText).ip);
+            callback(JSON.parse(xhttp.responseText).query,JSON.parse(xhttp.responseText).isp);
         }
     };
     xhttp.send();
 }
+
 
 
 //insert IP addresses into the page
@@ -91,7 +93,7 @@ getIPs(function(ip) {
     document.getElementById("webrtc").appendChild(p);
 });
 
-getInternetIP(function(ip) {
-    document.getElementById("internetip").innerHTML +=  ip + '<br>';
+getInternetIP(function(ip,isp) {
+    document.getElementById("internetip").innerHTML +=  ip +" - "+isp+ '<br>';
     window.yourip=ip;
 });

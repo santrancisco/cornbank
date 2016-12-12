@@ -1,3 +1,4 @@
+console.log("socialmedia.js loaded");
 // Thanks robinlinus.github.io for the code and ideas.
 
 var leakSocialMediaAccounts = function(callback) {
