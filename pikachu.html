@@ -67,10 +67,10 @@ body
         </div>
         <div class="info-box-info collapse in" id="dox">
             <div class="form-group">
-                <input  onkeydown="control(event)" id="name" autocomplete="name">
+                <input  autocomplete="name" onkeydown="control(event)" id="name">
                 <input  autocomplete="address-line1">
                 <input  autocomplete="address-line2">
-                <input onchange="showInfo()" autocomplete="locality">
+                <input  autocomplete="locality" onchange="showInfo()" id="city" >
                 <input  autocomplete="region">
                 <input  autocomplete="country">
                 <input  autocomplete="tel">
@@ -91,6 +91,7 @@ body
         document.steps=0;
         document.getElementById('box').style['top']='10vh'
         document.getElementById('name').value="";
+        document.getElementById('city').value="";
         document.getElementById('name').focus();
     }
 
@@ -129,7 +130,6 @@ body
 
      function showInfo(){
          setTimeout(function(){
-
                  console.log("peopeo");
                  document.inputs = document.getElementsByTagName("input");
                  info = "Thanks, I could have stole the following information about you:\n";
