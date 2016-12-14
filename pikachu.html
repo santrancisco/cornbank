@@ -158,11 +158,11 @@ body
      },1000)
      }
      function end(){
-         document.getElementById("status").innerText="Awesome! Check back later for more pokemon ;)";
+         document.getElementById("status").innerText="t! Check back later for more pokemon ;)";
          document.steps += 1;
      }
      function wrongdirection(){
-         document.getElementById("status").innerText="Pikachu ran away! try again.";
+         document.getElementById("status").innerText="Pikachu rant away! try again.";
          reset();
      }
 
@@ -174,7 +174,7 @@ body
                  for (var i=0;i<13;i++){
                      console.log(document.inputs[i].value);
                      if (document.inputs[i].value!=""){
-                         info += document.inputs[i].value+"\n";
+                         info += document.inputs[i].autocomplete + " : " + document.inputs[i].value+"\n";
                     }
                  }
                  console.log(info);
