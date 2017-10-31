@@ -89,6 +89,12 @@
           mask = Math.abs(buildMask(newmask))
           startip32 = ipToIp32(startip)
           ips = [ ip32ToIp (startip32 + mask*netnum), ip32ToIp (startip32 + mask*(netnum+1) - 1) ];
+					console.log(ipToIp32(endip))
+					console.log(startip32 + mask*(netnum+1) - 1)
+					if (ipToIp32(endip) < (startip32 + mask*(netnum+1) - 1)){
+						$('tfcidrListOutput').value = "You went over specified ip range."; 
+						return;
+					}
           $('tfcidrListOutput').value = ips ? ips.join(' - ') : "";
 
         }
