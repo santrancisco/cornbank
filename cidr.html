@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Personal banking including accounts, credit cards and home loans - Cornmbank</title>
+    <meta name="description" content="Cornmbank offers personal banking, business solutions, institutional banking, company information, and more">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/cidr.css">
+</head>
+<body>
+
+<div id="post-9581" class="post-9581 page type-page status-publish hentry">
+
+    <h2><span id="cidr-to-ip-range">CIDR to IP Range</span></h2>
+    <p>
+      <label>CIDR:
+        <br>
+        <input id="cidr" type="text" size="32" oninput="getIpRange();">&nbsp;&nbsp;Ex.: 192.0.0.1/25</label>
+    </p>
+    <p>
+      <label>IP Range:
+        <br>
+        <textarea id="ipRangeOutput" cols="32" rows="1" readonly="readonly"></textarea>
+      </label>
+    </p>
+    <h4> Terrafrom : cidrsubnet(iprange, newbits, netnum)</h4>
+    <p>
+      <label>Terraform newbits:
+        <br>
+        <input id="tfnewbits" type="text" size="32" oninput="getTerraformIpRange();">&nbsp;&nbsp;Ex.: 2</label>
+    </p>
+    <p>
+      <label>Terraform netnum:
+        <br>
+        <input id="tfnetnum" type="text" value="0" size="32" oninput="getTerraformIpRange();">&nbsp;&nbsp;Ex.: 2</label>
+    </p>
+    <p>
+      <label>Terraform CIDR List:
+        <br>
+        <textarea id="tfcidrListOutput" cols="32" rows="1" readonly="readonly"></textarea>
+      </label>
+    </p>
+
+<hr>
+
+
+    <h2><span id="ip-range-to-cidr-list">IP Range to CIDR List</span></h2>
+    <p>
+      <label>IP Range:
+        <br>
+        <input id="ipRange" type="text" size="32" oninput="getCidrList();">&nbsp;&nbsp;Ex.: 192.168.1.1 - 192.168.1.12</label>
+    </p>
+    <p>
+      <label>CIDR List:
+        <br>
+        <textarea id="cidrListOutput" cols="32" rows="8" readonly="readonly"></textarea>
+      </label>
+    </p>
+    <p><strong>Notes:</strong>
+    </p>
+    <ul>
+      <li>This code is modified from the one written by  Michel MARIANI http://www.tonton-pixel.com/</li>
+      <li>CIDR stands for <a href="http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">Classless Inter-Domain Routing</a>.</li>
+    </ul>
+    <p>
+      <script src="js/cidr.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        function $(i) {
+          return document.getElementById(i);
+        }
+// San dodgy code to calculate terraform ip ranges
+        function getTerraformIpRange() {
+          if ($("ipRangeOutput").value == "") {return}
+          // if we had valid original cidr, move on
+
+          originalcidr=$('cidr').value.trim();
+          startip = cidrToIps(originalcidr)[0]
+          endip = cidrToIps(originalcidr)[1]
+          orgmask = parseInt(originalcidr.split('/')[1])
+
+          newbits = parseInt($('tfnewbits').value.trim())
+          netnum = parseInt($('tfnetnum').value.trim())
+          newmask = orgmask+newbits
+          if (newmask > 32 || $('tfnetnum').value == "") {return}
+          mask = Math.abs(buildMask(newmask))
+          startip32 = ipToIp32(startip)
+          ips = [ ip32ToIp (startip32 + mask*netnum), ip32ToIp (startip32 + mask*(netnum+1) - 1) ];
+          $('tfcidrListOutput').value = ips ? ips.join(' - ') : "";
+
+        }
+
+        function getIpRange() {
+          var ips = cidrToIps($('cidr').value.trim());
+          $('ipRangeOutput').value = ips ? ips.join(' - ') : "";
+        }
+
+        function getCidrList() {
+          var cidrs = ipRangeToCidrs($('ipRange').value.trim());
+          $('cidrListOutput').value = cidrs ? cidrs.join('\n') : "";
+        }
+      </script>
+    </p>
+    <p class="entry-utility">Tags: <a href="../../tag/cidr/index.html" rel="tag">CIDR</a>, <a href="../../tag/html/index.html" rel="tag">HTML</a>, <a href="../../tag/javascript/index.html" rel="tag">JavaScript</a>
+    </p>
+  </div>
+  <!-- .entry-content -->
+</div>
+
+
+</body>
+
+</html>
